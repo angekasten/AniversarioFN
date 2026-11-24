@@ -108,7 +108,7 @@ h1{font-size:clamp(14px,4.6vw,20px);line-height:1.6;color:var(--gold);margin-bot
     <p>Hoje, uma nova jornada começa.</p>
     <p>A missão é simples, mas seu significado é incalculável: encontrar todas as mensagens escondidas pelo mapa, reunir os fragmentos desta história e descobrir o que existe no centro deste universo.</p>
     <p>Oito cartinhas foram espalhadas por esse mundo bagunçado. Cada uma guarda um segredo, um filósofo e uma piada ruim.</p>
-    <p>Ao seu lado, o leão-marinho Reggie e a gata Vaquinha, de bigodinho e cigarro na orelha. Boa sorte, jovem baterista…</p>
+    <p>Ao seu lado, a foquinha Angela e a gata Vaquinha. Boa sorte, jovem baterista…</p>
   </div></div>
 </section>
 
@@ -213,8 +213,20 @@ function player(X,Y,bob){c.save();c.translate(X,Y);var f=pl.f,K="#5a3a22";
   c.restore()}
 function mirror(p,fn){c.save();c.translate(Math.round(p.x*T)+16,Math.round(p.y*T));c.scale(p.f,1);Sh(0,30,14,3);fn();c.restore()}
 function reggie(){
-  O(-14,18,26,12,"#6e5f52");R(-8,26,18,4,"#8c7b6b");R(-20,24,7,4,"#4e4238");O(-2,26,9,4,"#4e4238");
-  O(6,8,10,14,"#6e5f52");O(14,12,7,6,"#7d6c5e");R(19,12,3,3,"#111");R(11,11,2,2,"#000");R(11,11,1,1,"#fff");R(16,17,7,1,"#fff");R(16,19,6,1,"#fff")
+  var b=Math.floor(t*2)%2,P=[
+    [-20,25,6,3,"#4e4238"],[-20,28,7,2,"#4e4238"],
+    [-15,23,6,7,"#6e5f52"],[-12,21,6,9,"#6e5f52"],[-9,18,6,12,"#6e5f52"],[-6,15,6,15,"#6e5f52"],[-3,12,9,18,"#6e5f52"],
+    [0,8,8,8,"#6e5f52"],[3,3+b,8,8,"#6e5f52"],[10,5+b,6,4,"#7d6c5e"],
+    [5,19,5,11,"#5a4a3d"],[5,28,8,2,"#5a4a3d"]
+  ];
+  P.forEach(function(p){R(p[0]-1,p[1]-1,p[2]+2,p[3]+2,"#1a1020")});
+  P.forEach(function(p){R(p[0],p[1],p[2],p[3],p[4])});
+  R(0,18,5,12,"#8c7b6b");R(-8,26,8,4,"#8c7b6b");R(-5,16,2,6,"#7d6c5e");R(5,19,1,10,"#3a2d24");
+  R(5,4+b,4,1,"#8c7b6b");
+  R(8,5+b,2,2,"#000");R(8,5+b,1,1,"#fff");
+  R(5,7+b,2,2,"#4e4238");
+  R(15,6+b,2,3,"#111");R(11,9+b,5,1,"#3a2d24");
+  R(16,8+b,6,1,"#fff");R(15,10+b,6,1,"#fff")
 }
 function vaca(){
   O(-10,18,18,10,"#f4f4f4");R(-6,18,8,6,"#111");R(-16,12,4,14,"#111");R(-8,28,4,3,"#f4f4f4");R(4,28,4,3,"#f4f4f4");
