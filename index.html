@@ -15,7 +15,7 @@ body{background:var(--space);color:var(--paper);font-family:"Press Start 2P",ui-
 .stars{position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(1.5px 1.5px at 20px 30px,#fff,transparent),radial-gradient(1px 1px at 90px 80px,#cfe,transparent),radial-gradient(1.5px 1.5px at 150px 20px,#fff,transparent),radial-gradient(1px 1px at 60px 140px,#fde,transparent);background-size:180px 170px;animation:tw 3s ease-in-out infinite alternate}
 @keyframes tw{from{opacity:.35}to{opacity:1}}
 .screen>*:not(.stars):not(.stage):not(.fade):not(#skip):not(#cf){position:relative;z-index:1}
-.pulse{width:110px;height:110px;margin-bottom:26px;display:grid;place-items:center;font-size:54px;animation:hit 1.6s steps(4) infinite}
+.pulse{width:320px;height:110px;margin-bottom:26px;display:grid;place-items:center;font-size:54px;animation:hit 1.6s steps(4) infinite}
 @keyframes hit{0%,100%{transform:scale(1)}10%{transform:scale(1.2)}30%{transform:scale(1)}}
 h1{font-size:clamp(14px,4.6vw,20px);line-height:1.6;color:var(--gold);margin-bottom:16px;text-shadow:3px 3px 0 var(--pink)}
 .sub{font-size:10px;line-height:1.9;color:var(--mute);max-width:32ch}
