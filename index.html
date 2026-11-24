@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Missão: Feliz aniversário, baterista 🥁</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Montserrat:wght@600;800&display=swap">
+<style>
+:root{color-scheme:dark;--space:#0a0620;--sand:#c8a15a;--saber:#4bb8ff;--gold:#ffd43b;--pink:#ff4fa3;--red:#d4503f;--paper:#f4ead8;--mute:#a79fd0;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit;margin:0}
+html,body{height:100%}
+body{background:var(--space);color:var(--paper);font-family:"Press Start 2P",ui-monospace,Menlo,monospace;overflow:hidden;-webkit-tap-highlight-color:transparent;touch-action:manipulation;user-select:none;-webkit-user-select:none}
+.screen{position:fixed;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px 20px;background:linear-gradient(var(--space) 55%,#3a0f4a);overflow:hidden}
+.screen.on{display:flex}
+.stars{position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(1.5px 1.5px at 20px 30px,#fff,transparent),radial-gradient(1px 1px at 90px 80px,#cfe,transparent),radial-gradient(1.5px 1.5px at 150px 20px,#fff,transparent),radial-gradient(1px 1px at 60px 140px,#fde,transparent);background-size:180px 170px;animation:tw 3s ease-in-out infinite alternate}
+@keyframes tw{from{opacity:.35}to{opacity:1}}
+.screen>*:not(.stars):not(.stage):not(.fade):not(#skip):not(#cf){position:relative;z-index:1}
+.pulse{width:110px;height:110px;margin-bottom:26px;display:grid;place-items:center;font-size:54px;animation:hit 1.6s steps(4) infinite}
+@keyframes hit{0%,100%{transform:scale(1)}10%{transform:scale(1.2)}30%{transform:scale(1)}}
+h1{font-size:clamp(14px,4.6vw,20px);line-height:1.6;color:var(--gold);margin-bottom:16px;text-shadow:3px 3px 0 var(--pink)}
+.sub{font-size:10px;line-height:1.9;color:var(--mute);max-width:32ch}
+.count{display:flex;gap:8px;margin:24px 0 18px}
+.count div{min-width:64px;padding:12px 0 9px;border:3px solid var(--saber);box-shadow:0 0 12px rgba(75,184,255,.45)}
+.count strong{display:block;font-weight:400;font-size:20px;color:var(--gold);margin-bottom:8px}
+.count span{font-size:8px;color:var(--mute)}
+.btn{margin-top:24px;background:var(--gold);color:var(--space);border:0;box-shadow:0 5px 0 var(--pink);padding:16px 22px;font:inherit;font-size:12px}
+.btn:active{transform:translateY(4px);box-shadow:0 1px 0 var(--pink)}
+#crawl{padding:0}
+.stage{position:absolute;inset:0;perspective:280px;overflow:hidden}
+.roll{position:absolute;left:9%;right:9%;top:100%;transform-origin:50% 100%;transform:rotateX(27deg);animation:roll 80s linear forwards;color:var(--gold);text-align:center;font:600 clamp(23px,6.2vw,30px)/1.6 "Montserrat",Arial,sans-serif;letter-spacing:.01em}
+.roll h3,.roll h2{text-align:center;margin-bottom:22px}
+.roll h3{font-weight:600}
+.roll h2{font-size:1.3em;font-weight:800;line-height:1.35}
+.roll p{margin-bottom:1em}
+@keyframes roll{to{transform:rotateX(27deg) translateY(-260%)}}
+#skip{position:absolute;right:14px;top:calc(env(safe-area-inset-top,0px) + 12px);z-index:3;background:none;border:2px solid var(--mute);color:var(--mute);font:inherit;font-size:9px;padding:8px 10px}
+#crawl .fade{position:absolute;left:0;right:0;top:0;height:30%;background:linear-gradient(var(--space),transparent);z-index:2;pointer-events:none}
+#game{justify-content:flex-start;padding-top:calc(env(safe-area-inset-top,0px) + 14px)}
+#hud{display:flex;align-items:center;gap:5px;font-size:9px;color:var(--mute);margin-bottom:8px}
+#hud span{width:13px;height:13px;border:2px solid var(--gold)}
+#hud span.f{background:var(--pink)}
+#tip{font-size:8px;color:var(--saber);margin-bottom:8px;line-height:1.8}
+.wrap{border:4px solid var(--pink);box-shadow:0 0 18px rgba(255,79,163,.5)}
+.wrap.shake{animation:sh .35s steps(4)}
+@keyframes sh{25%{transform:translate(-4px,2px)}50%{transform:translate(4px,-2px)}75%{transform:translate(-2px,-2px)}}
+#cv{display:block;image-rendering:pixelated;width:min(86vw,calc((100dvh - 290px)*.75));aspect-ratio:3/4;background:var(--sand)}
+.pad{display:grid;grid-template-columns:repeat(3,58px);grid-template-rows:repeat(3,58px);gap:4px;margin-top:12px;touch-action:none}
+.pad button{background:#1a0f3a;border:3px solid var(--gold);color:var(--gold);font:inherit;font-size:18px;touch-action:none}
+.pad button:active{background:var(--gold);color:var(--space)}
+.u{grid-column:2;grid-row:1}.l{grid-column:1;grid-row:2}.r{grid-column:3;grid-row:2}.d{grid-column:2;grid-row:3}
+#dlgw{position:fixed;inset:0;display:none;align-items:flex-end;justify-content:center;background:rgba(0,0,8,.5);z-index:5;padding:12px 12px calc(env(safe-area-inset-bottom,0px) + 18px)}
+#dlgw.on{display:flex}
+#dlg{width:100%;max-width:460px;background:#120a2c;border:4px solid var(--gold);box-shadow:0 0 0 4px #120a2c,0 0 22px rgba(255,212,59,.35);padding:16px;text-align:left}
+#dt{font-size:9px;color:var(--saber);margin-bottom:12px;line-height:1.7}
+#dx{font-size:10px;line-height:2;min-height:110px;white-space:pre-line}
+#dn{text-align:right;color:var(--gold);font-size:10px;animation:bl 1s steps(2) infinite}
+@keyframes bl{50%{opacity:0}}
+#cf{position:absolute;inset:0;z-index:0}
+.end h1{font-size:clamp(16px,5.6vw,24px)}
+.xp{font-size:11px;color:var(--saber);margin:8px 0 20px}
+.msg{font-size:10px;line-height:2;max-width:34ch;background:rgba(10,6,32,.88);border:3px solid var(--gold);padding:16px}
+.sign{margin-top:14px;color:var(--pink);font-size:10px}
+@media (prefers-reduced-motion:reduce){.stars,.pulse,.wrap.shake{animation:none}}
+</style>
+</head>
+<body>
+
+<section class="screen on" id="wait">
+  <div class="stars"></div>
+  <div class="pulse">🦭 & 🐈‍⬛</div>
+  <h1>Zona bloqueada até a meia-noite</h1>
+  <p class="sub">Angela e Vaquinha estão guardando você dia 03/12.</p>
+  <div class="count">
+    <div><strong id="d">--</strong><span>DIAS</span></div>
+    <div><strong id="h">--</strong><span>HRS</span></div>
+    <div><strong id="m">--</strong><span>MIN</span></div>
+    <div><strong id="s">--</strong><span>SEG</span></div>
+  </div>
+  <p class="sub">Volte quando o relógio zerar.</p>
+</section>
+
+<section class="screen" id="open">
+  <div class="stars"></div>
+  <div class="pulse">🥁</div>
+  <h1>Feliz aniversário, Fábio Napoli!</h1>
+  <h6>vulgo amor da minha vida</h6>
+  <p class="sub">Uma missão especial foi desbloqueada para você.</p>
+  <button class="btn" id="start">INICIAR MISSÃO</button>
+</section>
+
+<section class="screen" id="crawl">
+  <div class="stars"></div>
+  <button id="skip">PULAR</button>
+  <div class="fade"></div>
+  <div class="stage"><div class="roll" id="roll">
+    <h3>Episódio 03/12</h3>
+    <h2>O baterista e as 8 cartinhas</h2>
+    <p>Há muito tempo(1999), em uma galáxia não tão distante assim...</p>
+    <p>Em um vasto universo, bilhões de estrelas iluminam sistemas desconhecidos, incontáveis planetas guardam histórias que jamais serão contadas e, </p>
+    <p>entre tantas possibilidades, existem encontros que parecem desafiar até mesmo as leis mais improváveis do cosmos.</p>
+    <p>Em meio ao caos da galáxia, dois universos independentes seguiam suas próprias trajetórias. Cada um com suas próprias convicções, seus próprios caminhos, suas próprias órbitas.</p>
+    <p>Até que, em algum ponto do espaço-tempo, suas rotas se cruzaram.</p>
+    <p>O que parecia ser apenas mais uma coincidência cósmica acabou provocando uma alteração irreversível na estrutura do universo.</p>
+    <p>Desde então, uma nova constelação passou a existir.</p>
+    <p>Uma constelação construída com madrugadas de longas conversas, debates sobre liberdade, filosofia e propriedade privada, músicas , vídeos teus tocando bateria, memes de foquinha, piadas completamente questionáveis </p>
+    <p>e uma quantidade inexplicável de amor.</p>
+    <p>Mas nem mesmo os registros mais antigos da galáxia poderiam prever o que aconteceria a seguir.</p>
+    <p>Hoje, uma nova jornada começa.</p>
+    <p>A missão é simples, mas seu significado é incalculável: encontrar todas as mensagens escondidas pelo mapa, reunir os fragmentos desta história e descobrir o que existe no centro deste universo.</p>
+    <p>Oito cartinhas foram espalhadas por esse mundo bagunçado. Cada uma guarda um segredo, um filósofo e uma piada ruim.</p>
+    <p>Ao seu lado, o leão-marinho Reggie e a gata Vaquinha, de bigodinho e cigarro na orelha. Boa sorte, jovem baterista…</p>
+  </div></div>
+</section>
+
+<section class="screen" id="game">
+  <div id="hud"><b style="font-weight:400">CARTAS</b></div>
+  <div id="tip">ANDE E ACHE AS 8 CARTINHAS</div>
+  <div class="wrap" id="wrap"><canvas id="cv"></canvas></div>
+  <div class="pad" id="pad">
+    <button class="u" data-d="0,-1">▲</button><button class="l" data-d="-1,0">◀</button>
+    <button class="r" data-d="1,0">▶</button><button class="d" data-d="0,1">▼</button>
+  </div>
+</section>
+
+<div id="dlgw"><div id="dlg"><div id="dt"></div><div id="dx"></div><div id="dn">▼ TOQUE</div></div></div>
+
+<section class="screen end" id="end">
+  <canvas id="cf"></canvas>
+  <div class="stars"></div>
+  <div class="pulse">🦭</div>
+  <h1>MISSÃO COMPLETA!</h1>
+  <div class="xp">+1 ANO DE XP E +9999 DE AURA</div>
+  <div class="msg">Entre todos os mundos que eu já visitei, o meu favorito é o que tem você. Sou apaixonada por você, e a Vaquinha é testemunha (ela miou com voz de fumante).
+    <div class="sign">FELIZ ANIVERSÁRIO MEU AMOR! ❤️</div></div>
+</section>
+
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)};
+var screens=[].slice.call(document.querySelectorAll(".screen"));
+function show(id){screens.forEach(function(s){s.classList.toggle("on",s.id===id)})}
+
+/* contagem: libera à meia-noite do dia 03/12 (Brasília) */
+var UNLOCK=new Date("2026-12-03T00:00:00-03:00").getTime();
+var preview=location.hash==="#preview",timer;
+function pad(n){return n<10?"0"+n:""+n}
+function tick(){
+  var left=UNLOCK-Date.now();
+  if(preview||left<=0){clearInterval(timer);if($("wait").classList.contains("on"))show("open");return}
+  var s=Math.floor(left/1000);
+  $("d").textContent=Math.floor(s/86400);$("h").textContent=pad(Math.floor(s%86400/3600));
+  $("m").textContent=pad(Math.floor(s%3600/60));$("s").textContent=pad(s%60);
+}
+window.addEventListener("hashchange",function(){preview=location.hash==="#preview";tick()});
+tick();timer=setInterval(tick,1000);
+var taps=0;
+document.querySelector("#wait .pulse").addEventListener("click",function(){if(++taps>=5){preview=true;tick()}});
+
+var crawlDone=false;
+function toGame(){if(crawlDone)return;crawlDone=true;show("game");run=true;last=performance.now();requestAnimationFrame(loop)}
+$("start").onclick=function(){show("crawl")};
+$("skip").onclick=toGame;
+$("roll").addEventListener("animationend",toGame);
+
+/* mapa: # pedra, T palmeira (GTA), C cacto (RDR), B barril (KCD), W cristal (WoW), 1-8 cartinhas */
+var MAP=["############","#T....C...W#","#..1....B..#","#.BB..T....#","#....C...2.#","#.3..C.W...#","#T.....B...#","#...B....4.#","#.C.B..T...#","#..........#","#5..W..C.6.#","#...TT.....#","#.B.....B..#","#.7..C.....#","#P..T...8..#","############"];
+var MSG=[
+{t:"CARD · PLATÃO",x:"No Banquete, o amor é a busca pela metade que falta. Eu achei a minha: ela toca bateria e tem mais cabelo que eu.",p:"VAQUINHA: Miau?"},
+{t:"CARTA · SÓCRATES",x:"Sócrates só sabia que nada sabia. Eu só sei uma coisa: sou apaixonada por você. Pode anotar.",p:"VAQUINHA: (cof cof) confirmado."},
+{t:"CARD · SÓCRATES, O PARTEIRO",x:"Sócrates se dizia parteiro de ideias, ajudava elas a nascerem. No dia 03/12 o mundo nasceu com uma ideia perfeita: você."},
+{t:"CARTA · MEME",x:"Fábio é tão ancap que, no dia que eu engravidar você vai pergunta se existe a possibilidade de terceirizar a responsabilidade parental para uma empresa de segurança privada.",p:"VAQUINHA: arf arf aura detectada"},
+{t:"CARD · ARISTÓTELES",x:"Aristóteles descreveu o amor como uma alma em dois corpos. Só não sei qual de nós dois é o corpo que esquece as chaves."},
+{t:"CARTA · FOCA VS LEÃO-MARINHO",x:"O senso de humor do meu baterista é todo quebrado, mas eu amo que, entre uma batida e outra, ele sempre FOCA em mim🦭🥁💕.",p:"ANGELA: ARF ARF ARF"},
+{t:"CARD · EPICURO",x:"Epicuro fazia festa de aniversário todo mês com os amigos. Só queria te perguntar se hoje é teu aniversário, sabe porque? PORQUE VOCÊ TA DE PARABÉNS HEIN GATINHO."},
+{t:"CARTA FINAL · DIOTIMA",x:"Diotima ensinou a Sócrates que o amor sobe uma escada: primeiro um corpo, depois uma alma inteira. Eu já estou no último degrau. Feliz aniversário!",p:"VAQUINHA: mi...au (cof) ela te ama, tá tudo gravado."}];
+var W=12,H=16,T=32,cv=$("cv"),c=cv.getContext("2d");
+cv.width=W*T;cv.height=H*T;
+var walls={},items={},pl={x:1,y:14,px:1,py:14,f:1,mv:false},found=0,dir=null,dlg=false,run=false,last=0,t=0,typing=null,cur="";
+var trail=[{x:1,y:14}],pets=[{d:2,x:1,y:14,f:1},{d:5,x:1,y:14,f:1}];
+MAP.forEach(function(r,y){r.split("").forEach(function(ch,x){
+  if("#TCBW".indexOf(ch)>-1)walls[x+","+y]=ch;
+  else if(ch>="1"&&ch<="8")items[x+","+y]={id:+ch,got:false}
+})});
+var hud=$("hud"),sq=[];
+for(var i=0;i<8;i++){var s=document.createElement("span");hud.appendChild(s);sq.push(s)}
+
+function R(x,y,w,h,col){c.fillStyle=col;c.fillRect(x,y,w,h)}
+function O(x,y,w,h,col,ol){R(x-1,y-1,w+2,h+2,ol||"#1a1020");R(x,y,w,h,col)}
+function Sh(x,y,rx,ry){c.fillStyle="rgba(20,0,30,.3)";c.beginPath();c.ellipse(x,y,rx,ry,0,0,7);c.fill()}
+function hh(x,y){return (x*73+y*151+x*y*31)%7}
+var vg=c.createRadialGradient(W*T/2,H*T/2,H*T*.3,W*T/2,H*T/2,H*T*.78);vg.addColorStop(0,"rgba(0,0,0,0)");vg.addColorStop(1,"rgba(50,0,60,.5)");
+var fl=c.createLinearGradient(0,0,0,H*T);fl.addColorStop(0,"#e6b070");fl.addColorStop(1,"#b98a4e");
+function tile(ch,X,Y){c.save();c.translate(X,Y);
+  if(ch==="#"){O(2,6,28,24,"#6b5545");R(4,7,16,6,"#8c705a");R(22,14,6,14,"#5a4538");R(2,25,28,5,"#3d2e22");R(14,14,2,9,"#3d2e22")}
+  else if(ch==="T"){Sh(16,30,11,3);for(var i=0;i<6;i++)O(14+i%2,12+i*3,5,3,i%2?"#7a5430":"#5e3f22","#2a1608");
+    O(3,6,13,4,"#1fa35a","#0c3a1e");O(17,6,13,4,"#1fa35a","#0c3a1e");O(8,2,16,5,"#2ecc71","#0c3a1e");R(5,10,8,3,"#178a49");R(19,10,8,3,"#178a49");R(14,10,3,3,"#4a2e14");
+    if(Math.floor(t*3)%2)R(5,3,3,3,"#ff4fa3")}
+  else if(ch==="C"){Sh(16,30,9,3);O(13,6,7,24,"#3f8f3a","#173d1a");R(15,8,2,20,"#62b85a");O(5,13,8,4,"#3f8f3a","#173d1a");O(5,9,4,7,"#3f8f3a","#173d1a");O(20,17,8,4,"#3f8f3a","#173d1a");O(24,12,4,8,"#3f8f3a","#173d1a");R(14,3,5,4,"#ff4fa3")}
+  else if(ch==="B"){Sh(16,30,12,3);O(6,8,20,22,"#8a5a2b","#2a1608");R(8,8,4,22,"#b07a3e");R(6,13,20,2,"#2a2a33");R(6,23,20,2,"#2a2a33");O(8,5,16,5,"#c08a4a","#2a1608")}
+  else{var g=c.createRadialGradient(16,18,2,16,18,16);g.addColorStop(0,"rgba(190,130,255,"+(.5+.2*Math.sin(t*3+X))+")");g.addColorStop(1,"rgba(155,92,255,0)");c.fillStyle=g;c.fillRect(0,0,32,32);
+    c.fillStyle="#9b5cff";c.beginPath();c.moveTo(16,1);c.lineTo(25,28);c.lineTo(7,28);c.fill();
+    c.fillStyle="#c9a8ff";c.beginPath();c.moveTo(16,1);c.lineTo(16,28);c.lineTo(7,28);c.fill();
+    c.fillStyle="#6a35c4";c.beginPath();c.moveTo(6,12);c.lineTo(10,28);c.lineTo(2,28);c.fill()}
+  c.restore()}
+function player(X,Y,bob){c.save();c.translate(X,Y);var f=pl.f,K="#5a3a22";
+  Sh(16,30,10,3);
+  O(11,19,4,10-bob,"#22223a");O(17,19,4,9+bob,"#22223a");R(10,28-bob,6,3,"#e8e8e8");R(16,27+bob,6,3,"#e8e8e8");
+  O(10,6,12,14,"#15151f");R(10,10,12,2,"#8a2a4a");R(10,14,12,2,"#8a2a4a");
+  var sx=f>0?25:5;O(f>0?22:8,10,3,4,"#e9c3a0");R(sx,6,2,16,"#eadcb4");R(sx,4,2,3,"#d4503f");
+  O(11,-6,10,12,"#e9c3a0");
+  R(9,-10,14,5,K);R(9,-8,4,24,K);R(19,-8,4,24,K);R(11,-5,9,4,K);R(11,-10,6,1,"#8a5a34");R(10,-7,1,22,"#3d2814");
+  R(f>0?17:13,-1,2,2,"#111");R(15,3,3,1,"#a0543c");
+  c.restore()}
+function mirror(p,fn){c.save();c.translate(Math.round(p.x*T)+16,Math.round(p.y*T));c.scale(p.f,1);Sh(0,30,14,3);fn();c.restore()}
+function reggie(){
+  O(-14,18,26,12,"#6e5f52");R(-8,26,18,4,"#8c7b6b");R(-20,24,7,4,"#4e4238");O(-2,26,9,4,"#4e4238");
+  O(6,8,10,14,"#6e5f52");O(14,12,7,6,"#7d6c5e");R(19,12,3,3,"#111");R(11,11,2,2,"#000");R(11,11,1,1,"#fff");R(16,17,7,1,"#fff");R(16,19,6,1,"#fff")
+}
+function vaca(){
+  O(-10,18,18,10,"#f4f4f4");R(-6,18,8,6,"#111");R(-16,12,4,14,"#111");R(-8,28,4,3,"#f4f4f4");R(4,28,4,3,"#f4f4f4");
+  O(5,10,12,11,"#f4f4f4");R(5,10,6,5,"#111");O(5,6,4,5,"#111");O(13,6,4,5,"#111");
+  R(8,14,2,2,"#3c3");R(13,14,2,2,"#3c3");R(11,17,2,1,"#e88");R(10,18,4,2,"#111");
+  R(3,9,6,2,"#fff");R(3,9,2,2,"#ff6a2a");
+  for(var i=0;i<3;i++){c.globalAlpha=.5-i*.15;R(2-i,5-i*4-Math.floor(t*6%4),2,2,"#ddd")}c.globalAlpha=1
+}
+function card(X,Y,id,b){c.save();c.translate(X,Y);
+  var g=c.createRadialGradient(16,16,2,16,16,16);g.addColorStop(0,"rgba(255,212,59,"+(.45+.2*Math.sin(t*5+id))+")");g.addColorStop(1,"rgba(255,212,59,0)");c.fillStyle=g;c.fillRect(0,0,32,32);
+  if(id%2){O(5,12+b,22,15,"#d4503f");c.fillStyle="#a83a2c";c.beginPath();c.moveTo(5,12+b);c.lineTo(16,21+b);c.lineTo(27,12+b);c.fill();R(14,19+b,4,4,"#ffd43b")}
+  else{O(8,5+b,16,22,"#f4ead8");R(8,5+b,16,2,"#ffd43b");R(12,12+b,3,3,"#ff4fa3");R(17,12+b,3,3,"#ff4fa3");R(11,14+b,10,4,"#ff4fa3");R(13,18+b,6,2,"#ff4fa3");R(15,20+b,2,1,"#ff4fa3")}
+  R(Math.round(16+Math.cos(t*3+id)*13),Math.round(16+Math.sin(t*3+id)*9),2,2,"#fff");c.restore()}
+function draw(){
+  c.fillStyle=fl;c.fillRect(0,0,W*T,H*T);
+  for(var y=0;y<H;y++)for(var x=0;x<W;x++){
+    var X=x*T,Y=y*T,v=hh(x,y),w=walls[x+","+y];
+    if(w)tile(w,X,Y);
+    else{if((x+y)%2)R(X,Y,T,T,"rgba(90,40,20,.06)");if(v<3){R(X+6+v*3,Y+20,5,3,"#a9803f");R(X+7+v*3,Y+20,3,1,"#d4ad6a")}if(v===4)R(X+20,Y+8,2,2,"#d9b36f")}
+  }
+  for(var k in items){var it=items[k];if(it.got)continue;var p=k.split(",");card(p[0]*T,p[1]*T,it.id,Math.round(Math.sin(t*4+it.id)*1.5))}
+  mirror(pets[1],vaca);mirror(pets[0],reggie);
+  player(Math.round(pl.px*T),Math.round(pl.py*T),pl.mv&&Math.floor(t*12)%2?1:0);
+  c.fillStyle=vg;c.fillRect(0,0,W*T,H*T);
+}
+function upd(){sq.forEach(function(s,i){s.className=i<found?"f":""})}
+function loop(ts){
+  if(!run)return;
+  var dt=Math.min(.05,(ts-last)/1000||0);last=ts;t+=dt;
+  if(!pl.mv&&dir&&!dlg){
+    var nx=pl.x+dir[0],ny=pl.y+dir[1];if(dir[0])pl.f=dir[0];
+    if(!walls[nx+","+ny]){pl.x=nx;pl.y=ny;pl.mv=true}
+  }
+  if(pl.mv){
+    var sp=6.5*dt,dx=pl.x-pl.px,dy=pl.y-pl.py;
+    if(Math.abs(dx)+Math.abs(dy)<=sp){pl.px=pl.x;pl.py=pl.y;pl.mv=false;trail.push({x:pl.x,y:pl.y});if(trail.length>20)trail.shift();check()}
+    else{pl.px+=Math.sign(dx)*sp;pl.py+=Math.sign(dy)*sp}
+  }
+  pets.forEach(function(q){var g=trail[Math.max(0,trail.length-1-q.d)],k=Math.min(1,dt*8);
+    if(Math.abs(g.x-q.x)>.1)q.f=Math.sign(g.x-q.x);q.x+=(g.x-q.x)*k;q.y+=(g.y-q.y)*k});
+  draw();requestAnimationFrame(loop);
+}
+function check(){
+  var it=items[pl.x+","+pl.y];
+  if(it&&!it.got){it.got=true;found++;upd();$("tip").style.display="none";
+    var w=$("wrap");w.classList.remove("shake");void w.offsetWidth;w.classList.add("shake");
+    setTimeout(function(){openDlg(it.id)},350)}
+}
+function openDlg(id){
+  var m=MSG[id-1],i=0;cur=m.x+(m.p?"\n\n"+m.p:"");dlg=true;
+  $("dt").textContent=m.t;$("dx").textContent="";$("dn").style.visibility="hidden";$("dlgw").classList.add("on");
+  typing=setInterval(function(){i++;$("dx").textContent=cur.slice(0,i);
+    if(i>=cur.length){clearInterval(typing);typing=null;$("dn").style.visibility="visible"}},22);
+}
+$("dlgw").onclick=function(){
+  if(typing){clearInterval(typing);typing=null;$("dx").textContent=cur;$("dn").style.visibility="visible";return}
+  $("dlgw").classList.remove("on");dlg=false;
+  if(found===8)setTimeout(finish,500);
+};
+[].forEach.call($("pad").children,function(b){
+  var d=b.getAttribute("data-d").split(",").map(Number);
+  b.addEventListener("pointerdown",function(e){e.preventDefault();dir=d});
+  ["pointerup","pointerleave","pointercancel"].forEach(function(ev){b.addEventListener(ev,function(){if(dir===d)dir=null})});
+});
+var KEYS={ArrowUp:[0,-1],ArrowDown:[0,1],ArrowLeft:[-1,0],ArrowRight:[1,0],w:[0,-1],s:[0,1],a:[-1,0],d:[1,0]};
+document.addEventListener("keydown",function(e){if(KEYS[e.key]){dir=KEYS[e.key];e.preventDefault()}});
+document.addEventListener("keyup",function(e){if(KEYS[e.key]===dir)dir=null});
+
+function finish(){
+  run=false;show("end");
+  var cf=$("cf"),g=cf.getContext("2d");cf.width=innerWidth;cf.height=innerHeight;
+  var E=["🥁","🦭","❤️","🐈‍⬛","⭐"],P=[];
+  for(var i=0;i<42;i++)P.push({x:Math.random()*cf.width,y:Math.random()*cf.height,v:1+Math.random()*2.2,e:E[i%5],s:16+Math.random()*14});
+  (function f(){
+    g.clearRect(0,0,cf.width,cf.height);
+    P.forEach(function(p){p.y+=p.v;if(p.y>cf.height+30){p.y=-30;p.x=Math.random()*cf.width}g.font=p.s+"px serif";g.fillText(p.e,p.x,p.y)});
+    if($("end").classList.contains("on"))requestAnimationFrame(f);
+  })();
+}
+})();
+</script>
+</body>
+</html>
